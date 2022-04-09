@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { useLocation } from "react-router-dom";
 import app from "../../database/firebase";
@@ -22,21 +22,26 @@ const Room = () => {
   const roomDoc = doc(db, "rooms", roomID);
   const offerCandidates = collection(roomDoc, "offerCandidates");
   const answerCandidates = collection(roomDoc, "answerCandidates");
-  var peerConnection, offerDataChannel, answerDataChannel;
+  const peerConnection = new RTCPeerConnection({
+    iceServers: freeice(),
+  });
+
+  var offerDataChannel = useRef();
+  var answerDataChannel = useRef();
+
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     createPeerConnection();
   }, []);
 
   const createPeerConnection = async () => {
-    peerConnection = new RTCPeerConnection({
-      iceServers: freeice(),
-    });
     if (isHost) {
-      offerDataChannel = peerConnection.createDataChannel("chat");
-      offerDataChannel.onopen = () => console.log("DC opened");
-      offerDataChannel.onclose = () => console.log("DC closed");
-      offerDataChannel.onmessage = (e) => console.log("Message:" + e.data);
+      offerDataChannel.current = peerConnection.createDataChannel("chat");
+      offerDataChannel.current.onopen = () => console.log("DC opened");
+      offerDataChannel.current.onclose = () => console.log("DC closed");
+      offerDataChannel.current.onmessage = (e) =>
+        console.log("Message:" + e.data);
       peerConnection.onicecandidate = (e) => {
         if (e.candidate) {
           addDoc(offerCandidates, e.candidate.toJSON());
@@ -50,28 +55,33 @@ const Room = () => {
       onSnapshot(answerCandidates, (snapshot) => {
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added") {
+            const candidate = new RTCIceCandidate(change.doc.data());
             peerConnection
-              .addIceCandidate(change.doc.data())
+              .addIceCandidate(candidate)
+              .then(console.log("offerIce"))
               .catch((error) => console.log(error));
           }
         });
       });
       onSnapshot(roomDoc, (snapshot) => {
         const data = snapshot.data();
-        if (!peerConnection.currentRemoteDescription && data?.answer) {
+        if (
+          peerConnection.currentRemoteDescription == null &&
+          data?.answerObject
+        ) {
           const answerDescription = new RTCSessionDescription(
             data.answerObject
           );
           peerConnection.setRemoteDescription(answerDescription);
-          console.log(JSON.stringify(peerConnection.remoteDescription));
         }
       });
     } else {
       peerConnection.ondatachannel = (e) => {
-        answerDataChannel = e.channel;
-        answerDataChannel.onopen = () => console.log("DC opened");
-        answerDataChannel.onclose = () => console.log("DC closed");
-        answerDataChannel.onmessage = (e) => console.log("Message: " + e.data);
+        answerDataChannel.current = e.channel;
+        answerDataChannel.current.onopen = () => console.log("DC opened");
+        answerDataChannel.current.onclose = () => console.log("DC closed");
+        answerDataChannel.current.onmessage = (e) =>
+          console.log("Message: " + e.data);
       };
       peerConnection.onicecandidate = (e) => {
         if (e.candidate) {
@@ -95,6 +105,7 @@ const Room = () => {
             const candidate = new RTCIceCandidate(change.doc.data());
             peerConnection
               .addIceCandidate(candidate)
+              .then(console.log("answerIce"))
               .catch((error) => console.log(error));
           }
         });
@@ -102,14 +113,19 @@ const Room = () => {
     }
   };
 
-  function checkState() {
-    console.log(JSON.stringify(peerConnection.remoteDescription));
+  function sendMessage() {
+    if (isHost) {
+      offerDataChannel.current.send(message);
+    } else {
+      answerDataChannel.current.send(message);
+    }
   }
 
   return (
     <div>
       This is your room - {roomID}
-      <button onClick={checkState}>check</button>
+      <input onChange={(e) => setMessage(e.target.value)}></input>
+      <button onClick={sendMessage}>Send</button>
     </div>
   );
 };
