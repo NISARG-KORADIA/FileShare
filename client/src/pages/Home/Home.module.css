@@ -1,0 +1,152 @@
+::selection {
+  background: none;
+  color: #FF6250;
+  text-shadow: #ff8c7f 0 0 5px;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.titleAndButton {
+  padding-top: 9rem;
+}
+
+.title{
+  color: #FF6250;
+  font-family: "Recoleta", "Poppins", "Arial";
+}
+
+/* Responsive Title */
+.titleRes{
+  font-weight: 900;
+  font-size: 6rem;
+  margin-bottom: 3rem;
+}  
+
+.buttonWrapper {
+  gap: 1.4rem;
+}
+
+.createButton {
+  background: #FF6250;
+  border-color: #FF6250;
+  color: #FDFCF6;
+}
+
+.createButton:hover {
+  background-color: #252525;
+  color: #FDFCF6;
+  border: #252525;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.codeInput{
+  background: none;
+  outline: none;
+  border-color: #252525;
+  color: #252525;
+  text-transform:lowercase;
+  text-align: center;
+  cursor: text;
+  transition: 0.4s cubic-bezier(0.29, 0.94, 0.24, 0.9);
+}
+
+.shrinkCodeInput {
+  margin-right: 0rem;
+  width: 12rem;
+}
+
+.codeInput:hover {
+  border-color: #FF6250;
+  color: #FF6250;
+}
+
+.codeInput:focus {
+  border-color: #FF6250;
+  color: #FF6250;
+}
+
+.joinButton{
+  border: none;
+  color: #FDFCF6;
+  background: #252525;
+  transition: 0.4s cubic-bezier(0.29, 0.94, 0.24, 0.9);
+}
+
+.showJoinButton{
+  margin-left: 1rem;
+  width: 6rem;
+  transform: scale(1);
+}
+
+.hideJoinButton{
+  width: 0rem;
+  transform: scale(0);
+}
+
+.joinButton:hover{
+  background: #FF6250;
+}
+
+.alert{
+  margin-top: -1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #252525;
+}
+
+.alertAnimation{
+  animation: shake 0.15s 2 linear;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(3px, 0);
+  }
+  50% {
+    transform: translate(-3px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+
+.footer {
+  /* position: absolute;
+  bottom: 0px; */
+  width: 100vw;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #252525;
+  font-weight: 400;
+  text-transform: lowercase;
+  text-decoration: underline;
+}
+
+.ankerLink {
+  color: #252525;
+  transition: .1s ease-in;
+  -webkit-transition: .1s ease-in;
+  cursor: pointer;
+}
+
+.ankerLink:hover {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 500px) {  
+  .titleRes{
+    font-weight: 700;
+    font-size: 3.7rem;
+    margin-bottom: 2.5rem;
+  }  
+}
