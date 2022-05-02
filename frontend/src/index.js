@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// importing fonts
+import './fonts/Poppins/Poppins-Medium.ttf';
+import './fonts/Poppins/Poppins-Regular.ttf';
+import './fonts/Poppins/Poppins-Thin.ttf';
+import './fonts/Recoleta/Recoleta-Black.ttf';
+import './fonts/Recoleta/Recoleta-Bold.ttf';
+import './fonts/Recoleta/Recoleta-Regular.ttf';
+
+
 ReactDOM.render(
-  <React.StrictMode>
+  < React.StrictMode >
     <App />
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );
 

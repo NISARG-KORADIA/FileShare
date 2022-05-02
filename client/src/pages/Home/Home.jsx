@@ -73,7 +73,7 @@ const Home = (props) => {
         state={{ isHost: false }}
         className="hide"
       />
-      <div className={styles.homePage}>
+      <div className="homePage">
         <div className={`container ${styles.titleAndButton}`}>
           <p className={`${styles.title} ${styles.titleRes}`}>File Share</p>
           <div className={`container ${styles.buttonWrapper}`}>
@@ -96,6 +96,7 @@ const Home = (props) => {
                 }`}
                 type={"text"}
                 placeholder="Join a room"
+                spellCheck="false"
                 maxLength="5"
               />
               <div

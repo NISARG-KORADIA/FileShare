@@ -4,13 +4,6 @@
   text-shadow: #ff8c7f 0 0 5px;
 }
 
-.homePage {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-}
-
 .titleAndButton {
   padding-top: 9rem;
 }

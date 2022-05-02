@@ -1,0 +1,57 @@
+.padding20 {
+  padding: 0.5rem;
+}
+
+.topBar{
+  background: #FDFCF6;
+  padding: 0.5rem;
+  flex-direction: row;
+  gap: 0.5rem;
+  border: 0.2rem solid #252525;
+  border-radius: 3rem;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.avatarContainer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* width: 5rem; */
+}
+
+.hostLable{
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  margin-bottom: -0.2rem;
+  background: #FF6250;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  font-size: 0.6rem;
+}
+
+.avatar{
+  border: 0.2rem solid;
+  border-color: #252525;
+  border-radius: 50px;
+}
+
+.hostAvatar{
+  border-color: #FF6250;
+}
+
+.verticleLine{
+  background-color: #252525;
+  border: 0.1rem solid #252525;
+  border-radius: 0.2rem;
+  height: 2.5rem;
+  /* margin-left: 0.5rem; */
+}
+
+.color{
+  color: #FF6250;
+}

@@ -1,0 +1,105 @@
+::selection {
+  background: none;
+  color: #FF6250;
+  text-shadow: #ff8c7f 0 0 5px;
+}
+
+.homePage {
+  height: 100vh;
+}
+
+.title{
+  color: #FF6250;
+  font-family: "Recoleta", "Poppins", "Arial";
+}
+
+.titleRes{
+  font-weight: 900;
+  font-size: 6em;
+  margin-bottom: 0.5em;
+}  
+
+@media screen and (max-width: 500px) {
+  .titleRes{
+    font-weight: 700;
+    font-size: 4.2em;
+    margin-bottom: 0.3em;
+  }  
+}
+
+.buttonWrapper {
+  gap: 22px;
+}
+
+.createButton {
+  background: #FF6250;
+  border-color: #FF6250;
+  color: #FDFCF6;
+}
+
+.createButton:hover {
+  background-color: #252525;
+  color: #FDFCF6;
+  border: #252525;
+}
+
+.joinInput {
+  background: #FDFCF6;
+  border-color: #252525;
+  color: #252525;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+.joinInput:hover {
+  color: #FF6250;
+  border-color: #FF6250;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #252525;
+  font-weight: 400;
+  text-transform: lowercase;
+  text-decoration: underline;
+}
+
+.ankerLink {
+  color: #252525;
+  transition: .1s ease-in;
+  -webkit-transition: .1s ease-in;
+  cursor: pointer;
+}
+
+.ankerLink:hover {
+  font-size: 1.2rem;
+}
+
+.codeInput{
+  background: none;
+  outline: none;
+  border: none;
+  width: 7rem;
+  font-size: 1em;
+  font-family: "Poppins", "sans-serif";
+  font-weight: 500;
+  text-transform:lowercase;
+  letter-spacing: 0.4em;
+}
+
+.joinButton{
+  height: 2rem;
+  width: 5rem;
+  border: none;
+  color: #FDFCF6;
+  background: #252525;
+  font-size: 0.7em;
+}
+
+.joinButton:hover{
+  background: #FF6250;
+}
